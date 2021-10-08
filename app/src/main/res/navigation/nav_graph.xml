@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/shopFragment">
+
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="com.abhi41.java_shoopingcart.Views.ShopFragment"
+        android:label="@string/shop"
+        tools:layout="@layout/fragment_shop">
+        <action
+            android:id="@+id/action_shopFragment_to_prouctDetailFragment"
+            app:destination="@id/prouctDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_shopFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/prouctDetailFragment"
+        android:name="com.abhi41.java_shoopingcart.Views.ProuctDetailFragment"
+        android:label="Product Detail"
+        tools:layout="@layout/fragment_prouct_detail" >
+        <action
+            android:id="@+id/action_prouctDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_prouctDetailFragment_to_cartFragment2"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.abhi41.java_shoopingcart.Views.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_orderFragment"
+            app:destination="@id/orderFragment"
+            app:popUpTo="@id/shopFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.abhi41.java_shoopingcart.Views.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" >
+        <action
+            android:id="@+id/action_orderFragment_to_shopFragment"
+            app:destination="@id/shopFragment" />
+    </fragment>
+</navigation>

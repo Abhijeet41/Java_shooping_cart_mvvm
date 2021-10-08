@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="product"
+            type="com.abhi41.java_shoopingcart.models.Product" />
+
+        <variable
+            name="shopInterface"
+            type="com.abhi41.java_shoopingcart.adapters.ShopListAdapter.ShopInterface" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraint"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> shopInterface.onItemClick(product)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/productImageview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:productImage="@{product.imageUrl}"
+            app:srcCompat="@drawable/iphone11" />
+
+        <TextView
+            android:id="@+id/txt_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{product.name}"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/productImageview"
+            app:layout_constraintStart_toStartOf="@+id/productImageview"
+            app:layout_constraintTop_toBottomOf="@+id/productImageview" />
+
+        <TextView
+            android:id="@+id/txt_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{String.valueOf(product.price) + `$`}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintEnd_toEndOf="@+id/productImageview"
+            app:layout_constraintStart_toStartOf="@+id/productImageview"
+            app:layout_constraintTop_toBottomOf="@+id/txt_product_name" />
+
+        <TextView
+            android:id="@+id/txt_available"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:text="@{product.available ? `Available`:`Out of stock`}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@{product.available ? @color/textSecondary:@color/red}"
+            app:layout_constraintEnd_toEndOf="@+id/productImageview"
+            app:layout_constraintStart_toStartOf="@+id/productImageview"
+            app:layout_constraintTop_toBottomOf="@+id/txt_price" />
+
+        <Button
+            android:id="@+id/btn_AddtoCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to cart"
+            android:textStyle="bold"
+            android:onClick="@{() -> shopInterface.addItem(product)}"
+            android:enabled="@{product.available}"
+            android:textColor="@color/color_primary_dark"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/productImageview"
+            app:layout_constraintStart_toStartOf="@+id/productImageview"
+            app:layout_constraintTop_toBottomOf="@+id/txt_available" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
